@@ -24,6 +24,31 @@ public class JustDial {
 
 		ChromeDriver driver = new ChromeDriver(options);
 
+//		driver.get("https://www.justdial.com/");
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		driver.manage().window().maximize();
+//
+//		driver.findElement(By.xpath("//div[@class='search-city mnsrchwpr']")).click();
+//		Thread.sleep(1000);
+//		driver.findElement(By.xpath("//a[text()='Chennai']")).click();
+//
+//		driver.findElement(By.xpath("//span[text()='Auto care']")).click();
+//		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+//		Thread.sleep(1000);
+//		driver.findElement(By.xpath("//span[@title='Car Repair']")).click();
+//		Thread.sleep(1000);
+//		driver.findElement(By.xpath("//span[@title='Hyundai']")).click();
+//		Thread.sleep(1000);
+//		driver.findElement(By.xpath("//span[@title='Hyundai Xcent']")).click();
+//		
+//		driver.findElement(By.xpath("//span[@title='All Options']")).click();
+//		
+//		driver.findElement(By.id("srchbx")).click();
+//		driver.findElement(By.id("insrch")).sendKeys("Porur", Keys.ARROW_DOWN, Keys.ENTER);
+//		
+//		driver.findElement(By.id("distance")).click();
+//		driver.findElement(By.xpath("//span[@class='drpwn']/*[text()='1 km']")).click();
+		
 		driver.get("https://www.justdial.com/Chennai/Car-Repair-Services-Hyundai-Xcent-in-Porur/nct-11293522");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -37,7 +62,6 @@ public class JustDial {
 
 		List<WebElement> totalDetailCount = driver
 				.findElements(By.xpath("//div[@class=' col-sm-5 col-xs-8 store-details sp-detail paddingR0']"));
-		System.out.println(totalDetailCount.size());
 		
 		List<String> serviceName = new ArrayList<String>();
 		List<String> ratingNo = new ArrayList<String>();
@@ -146,9 +170,6 @@ public class JustDial {
 			}
 		}
 
-		System.out.println("Name Size: " + serviceName.size() + " Rating Size: " + ratingNo.size() + " Voting Size: "
-				+ voteNo.size() + " PhoneNo size: " + phoneNo.size());
-		
 		Map<String, Integer> storeNameVote = new HashMap<String, Integer>();
 		List<String> finalVotingName = new ArrayList<String>();
 
@@ -163,10 +184,6 @@ public class JustDial {
 			}
 		}
 
-//		System.out.println("Voting >=50");
-//		for (String eachVote : finalVotingName) {
-//			System.out.println(eachVote);
-//		}
 		// Create Map - Key as Service provide name and rating as value
 		Map<String, Float> storeNameRating = new HashMap<String, Float>();
 		List<String> finalRatingName = new ArrayList<String>();
@@ -182,10 +199,6 @@ public class JustDial {
 			}
 		}
 		
-//		System.out.println("Rating >=4.5");
-//		for (String eachRate : finalRatingName) {
-//			System.out.println(eachRate);
-//		}
 
 		// Merging both rating and voting final result of service provider name in one
 		// list and displaying only duplicate values
