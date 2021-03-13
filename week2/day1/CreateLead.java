@@ -4,20 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import week2.assignment.BaseClass;
 
-public class CreateLead {
+public class CreateLead extends BaseClass{
 
-	public static void main(String[] args) {
-		WebDriverManager.chromedriver().setup();
-		ChromeDriver driver = new ChromeDriver();
-		driver.get("http://leaftaps.com/opentaps/control/login");
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys("demosalesmanager"); // username
-		driver.findElement(By.id("password")).sendKeys("crmsfa");// password
-		driver.findElement(By.className("decorativeSubmit")).click();// login
-		driver.findElement(By.linkText("CRM/SFA")).click(); // CRM/SFA Link
+	@Test
+	public void runCreateLead() {
 		driver.findElement(By.linkText("Create Lead")).click(); // create lead menu link
 		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("SembCorp Marine"); // company name
 		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Srividya"); // first name
