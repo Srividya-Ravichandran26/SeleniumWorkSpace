@@ -2,21 +2,14 @@ package week2.assignment;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DuplicateLead {
+public class DuplicateLead extends BaseClass{
 
-	public static void main(String[] args) throws Exception {
-		WebDriverManager.chromedriver().setup();
-		ChromeDriver driver = new ChromeDriver();
-		driver.get("http://leaftaps.com/opentaps/control/main");
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys("demosalesmanager"); // username
-		driver.findElement(By.id("password")).sendKeys("crmsfa");// password
-		driver.findElement(By.className("decorativeSubmit")).click();// login
-		driver.findElement(By.linkText("CRM/SFA")).click(); // CRM/SFA Link
-		driver.findElement(By.linkText("Leads")).click(); // Click Leads link
+	@Test
+	public void runDuplicateLead() throws Exception {
 		driver.findElement(By.linkText("Find Leads")).click();// Find Leads
 		driver.findElement(By.xpath("//span[@class='x-tab-strip-inner']/span[text()='Email']")).click();
 		Thread.sleep(2000);
@@ -37,7 +30,6 @@ public class DuplicateLead {
 			System.out.println("Lead name (" + leadName + ") is same as duplicate lead name(" + linkValue + ")");
 		}
 
-		driver.close();
 
 	}
 
