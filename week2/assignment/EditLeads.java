@@ -2,14 +2,20 @@ package week2.assignment;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class EditLeads extends BaseClass{
 
-	@Test
-	public void runEditLeads() throws Exception {
+	@BeforeTest
+	public void setFileName() {
+		excelFN = "EditLead";
+	}
+	
+	@Test(dataProvider = "FetchData")
+	public void runEditLeads(String company) throws Exception {
 
 		driver.findElement(By.linkText("Find Leads")).click();// Find Leads
 		
@@ -24,11 +30,11 @@ public class EditLeads extends BaseClass{
 		System.out.println("The Title of the page is:" + driver.getTitle());
 		driver.findElement(By.linkText("Edit")).click();
 		driver.findElement(By.id("updateLeadForm_companyName")).clear();
-		driver.findElement(By.id("updateLeadForm_companyName")).sendKeys("CTS Company");
+		driver.findElement(By.id("updateLeadForm_companyName")).sendKeys(company);
 		driver.findElement(By.xpath("//input[@value='Update']")).click();
 		String companyName = driver.findElement(By.id("viewLead_companyName_sp")).getText();
 
-		if (companyName.contains("CTS Company")) {
+		if (companyName.contains(company)) {
 			System.out.println("Company name is changed and it is appeared as expected:" + companyName);
 		}
 
