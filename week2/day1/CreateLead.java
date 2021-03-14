@@ -1,22 +1,32 @@
 package week2.day1;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import week2.assignment.BaseClass;
+import week5.day2.ReadExcel;
 
 public class CreateLead extends BaseClass{
 
-	@Test
-	public void runCreateLead() {
+	@BeforeTest
+	public void setFileName() {
+		excelFN = "createLead";
+	}
+//	@Test(invocationCount=3)
+	@Test(dataProvider = "FetchData")
+	public void runCreateLead(String companyName, String FirstName, String LastName) {
 		driver.findElement(By.linkText("Create Lead")).click(); // create lead menu link
-		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("SembCorp Marine"); // company name
-		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Srividya"); // first name
-		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Ravichandran");// last name
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys(companyName); // company name
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys(FirstName); // first name
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys(LastName);// last name
 
 		WebElement source = driver.findElement(By.id("createLeadForm_dataSourceId"));// locate source dropdown
 		Select sourceDropdown = new Select(source); // create obj
